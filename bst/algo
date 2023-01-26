@@ -1,0 +1,18 @@
+single Stack
+
+ptr = NULL
+last = NULL
+while stack is not empty || ptr
+    if  ptr
+        push ptr
+        ptr = ptr->left
+     
+     else 
+        if s.top->right
+            ptr = s.top->right
+        
+        else while s.top && s.top->right == last
+                last = s.top
+                visit and pop s.top
+        
+                

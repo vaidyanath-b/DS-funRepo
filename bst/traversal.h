@@ -41,4 +41,35 @@ void inorder_traversal(bst *bst, void (*process)(int))
     }
 }
 
+void post_order_traversal(bst *bst, void (*process)(int))
+{
+    Stack s;
+    s.top = NULL;
+    node *ptr = bst->root;
+    node *last = NULL;
+    while (s.top || ptr)
+    {
+        if (ptr)
+        {
+            push(&s, ptr);
+            ptr = ptr->left;
+        }
+        else
+        {
+            node *temp = peek(s)->right;
+            if (temp)
+                ptr = temp;
+            else
+            {
+                temp = pop(&s);
+                process(temp->data.value);
 
+                while (s.top && peek(s)->right == temp)
+                {
+                    temp = pop(&s);
+                    process(temp->data.value);
+                }
+            }
+        }
+    }
+}
