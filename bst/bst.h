@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_SIZE 20
-                         
+
 typedef struct
 {
     int value;
@@ -70,4 +70,7 @@ node *create_node(Data data)
     return temp;
 }
 
-
+node *peek(Stack s)
+{
+    return s.top->data;
+}
