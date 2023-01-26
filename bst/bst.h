@@ -74,3 +74,37 @@ node *peek(Stack s)
 {
     return s.top->data;
 }
+
+void insert_node(node *root, Data data)
+{
+    node *temp = create_node(data);
+
+    if (data.value <= root->data.value)
+    {
+        if (root->left == NULL)
+        {
+            root->left = temp;
+            return;
+        }
+        insert_node(root->left, data);
+    }
+    else if (data.value > root->data.value)
+    {
+        if (root->right == NULL)
+        {
+            root->right = temp;
+            return;
+        }
+        insert_node(root->right, data);
+    }
+}
+
+void insert(bst *bst, Data data)
+{
+    if (bst->root == NULL)
+    {
+        bst->root = create_node(data);
+        return;
+    }
+    insert_node(bst->root, data);
+}
